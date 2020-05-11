@@ -8,9 +8,7 @@ const RestaurantsDetail = ({ result }) => {
       <Image source={{ uri: result.image_url }} style={styles.imageStyle} />
       <Text style={styles.nameStyle}>{result.name}</Text>
       <Text style={styles.detailsStyle}>
-        {result.rating} <FontAwesome name="star" style={styles.iconStyle} />{' '}
-        {'  '}
-        {result.review_count} Reviews
+        {result.rating} Stars, {result.review_count} Reviews
       </Text>
     </View>
   );
@@ -36,9 +34,6 @@ const styles = StyleSheet.create({
   detailsStyle: {
     color: 'grey',
     marginBottom: 3,
-  },
-  iconStyle: {
-    fontSize: 15,
   },
 });
 

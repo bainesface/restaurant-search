@@ -37,9 +37,6 @@ const styles = StyleSheet.create({
     color: 'grey',
     marginBottom: 3,
   },
-  iconStyle: {
-    fontSize: 15,
-  },
 });
 
 export default RestaurantsDetail;
