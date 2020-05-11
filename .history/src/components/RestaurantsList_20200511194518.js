@@ -10,9 +10,6 @@ import { withNavigation } from 'react-navigation';
 import RestaurantsDetail from '../components/RestaurantsDetail';
 
 const RestaurantsList = ({ title, restaurants, navigation }) => {
-  if (!restaurants.length) {
-    return null;
-  }
   return (
     <View style={styles.container}>
       <Text style={styles.titleStyle}>{title}</Text>

@@ -24,7 +24,6 @@ const RestaurantShowScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.nameStyle}>{restaurant.name}</Text>
       <FlatList
-        showsVerticalScrollIndicator={false}
         data={restaurant.photos}
         keyExtractor={(photo) => photo}
         renderItem={({ item }) => {

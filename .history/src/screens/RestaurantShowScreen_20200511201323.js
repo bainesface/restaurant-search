@@ -24,7 +24,6 @@ const RestaurantShowScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.nameStyle}>{restaurant.name}</Text>
       <FlatList
-        showsVerticalScrollIndicator={false}
         data={restaurant.photos}
         keyExtractor={(photo) => photo}
         renderItem={({ item }) => {
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     height: 200,
     width: 300,
     borderRadius: 4,
-    marginBottom: 10,
+    marginBottom: 5,
   },
   container: {
     alignItems: 'center',

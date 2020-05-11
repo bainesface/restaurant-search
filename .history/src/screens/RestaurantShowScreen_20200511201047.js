@@ -21,10 +21,9 @@ const RestaurantShowScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.nameStyle}>{restaurant.name}</Text>
       <FlatList
-        showsVerticalScrollIndicator={false}
         data={restaurant.photos}
         keyExtractor={(photo) => photo}
         renderItem={({ item }) => {
@@ -36,19 +35,13 @@ const RestaurantShowScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  nameStyle: {
-    fontWeight: 'bold',
-    fontSize: 18,
-    marginVertical: 15,
-  },
+  nameStyle: { fontWeight: 'bold' },
+
   image: {
     height: 200,
     width: 300,
     borderRadius: 4,
-    marginBottom: 10,
-  },
-  container: {
-    alignItems: 'center',
+    marginBottom: 5,
   },
 });
 
