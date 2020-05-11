@@ -18,8 +18,6 @@ const RestaurantsDetail = ({ result }) => {
 const styles = StyleSheet.create({
   containerStyle: {
     marginLeft: 10,
-    paddingBottom: 5,
-    borderBottomWidth: 0.5,
   },
   imageStyle: {
     width: 250,

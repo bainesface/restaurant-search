@@ -4,7 +4,7 @@ import RestaurantsDetail from '../components/RestaurantsDetail';
 
 const RestaurantsList = ({ title, restaurants }) => {
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.titleStyle}>{title}</Text>
       <FlatList
         horizontal
@@ -23,11 +23,7 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginVertical: 5,
-    marginLeft: 10,
-  },
-  container: {
-    marginBottom: 10,
+    margin: 10,
   },
 });
 

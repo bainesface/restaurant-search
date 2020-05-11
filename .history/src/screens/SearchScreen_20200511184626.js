@@ -4,8 +4,7 @@ import SearchBar from '../components/SearchBar';
 import useRestaurants from '../hooks/useRestaurants';
 import RestaurantsList from '../components/RestaurantsList';
 
-const SearchScreen = (props) => {
-  console.log(props);
+const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchApi, restaurants, errorMessage] = useRestaurants();
 
@@ -25,26 +24,35 @@ const SearchScreen = (props) => {
       {errorMessage.length !== 0 ? (
         <Text>{errorMessage}</Text>
       ) : (
-        <ScrollView>
-          <RestaurantsList
-            title="Cost Effective"
-            restaurants={filterRestaurantsByPrice('£')}
-          />
-          <RestaurantsList
-            title="Bit Pricier"
-            restaurants={filterRestaurantsByPrice('££')}
-          />
-          <RestaurantsList
-            title="Big Spender"
-            restaurants={filterRestaurantsByPrice('£££')}
-          />
-        </ScrollView>
+        <View>
+          <Text style={styles.numberResults}>
+            We have found {restaurants.length} results
+          </Text>
+          <ScrollView>
+            <RestaurantsList
+              title="Cost Effective"
+              restaurants={filterRestaurantsByPrice('£')}
+            />
+            <RestaurantsList
+              title="Bit Pricier"
+              restaurants={filterRestaurantsByPrice('££')}
+            />
+            <RestaurantsList
+              title="Big Spender"
+              restaurants={filterRestaurantsByPrice('£££')}
+            />
+          </ScrollView>
+        </View>
       )}
     </>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
   numberResults: {
     marginLeft: 10,
     marginTop: 3,

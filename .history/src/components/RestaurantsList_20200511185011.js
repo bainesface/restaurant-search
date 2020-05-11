@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   },
   container: {
     marginBottom: 10,
+    borderBottomWidth: 0.5,
   },
 });
 

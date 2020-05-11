@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import useRestaurants from '../hooks/useRestaurants';
 import RestaurantsList from '../components/RestaurantsList';
 
-const SearchScreen = (props) => {
-  console.log(props);
+const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchApi, restaurants, errorMessage] = useRestaurants();
 
@@ -16,7 +15,7 @@ const SearchScreen = (props) => {
   };
 
   return (
-    <>
+    <View style={styles.background}>
       <SearchBar
         term={searchTerm}
         onTermChange={setSearchTerm}
@@ -25,30 +24,27 @@ const SearchScreen = (props) => {
       {errorMessage.length !== 0 ? (
         <Text>{errorMessage}</Text>
       ) : (
-        <ScrollView>
-          <RestaurantsList
-            title="Cost Effective"
-            restaurants={filterRestaurantsByPrice('£')}
-          />
-          <RestaurantsList
-            title="Bit Pricier"
-            restaurants={filterRestaurantsByPrice('££')}
-          />
-          <RestaurantsList
-            title="Big Spender"
-            restaurants={filterRestaurantsByPrice('£££')}
-          />
-        </ScrollView>
-      )}
-    </>
+        <Text>We have found {restaurants.length} results</Text>
+      
+      <RestaurantsList
+        title="Cost Effective"
+        restaurants={filterRestaurantsByPrice('£')}
+      />
+      <RestaurantsList
+        title="Bit Pricier"
+        restaurants={filterRestaurantsByPrice('££')}
+      />
+      <RestaurantsList
+        title="Big Spender"
+        restaurants={filterRestaurantsByPrice('£££')}
+      />)}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  numberResults: {
-    marginLeft: 10,
-    marginTop: 3,
-    marginBottom: 6,
+  background: {
+    backgroundColor: 'white',
   },
 });
 
