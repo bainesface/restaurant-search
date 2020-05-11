@@ -1,18 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SearchBar from '../components/SearchBar';
+import yelp from '../api/yelp';
 import useRestaurants from '../hooks/useRestaurants';
-import RestaurantsList from '../components/RestaurantsList';
 
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchApi, restaurants, errorMessage] = useRestaurants();
-
-  const filterRestaurantsByPrice = (price) => {
-    return restaurants.filter((restaurant) => {
-      return restaurant.price === price;
-    });
-  };
 
   return (
     <View style={styles.background}>
@@ -26,18 +19,6 @@ const SearchScreen = () => {
       ) : (
         <Text>We have found {restaurants.length} results</Text>
       )}
-      <RestaurantsList
-        title="Cost Effective"
-        restaurants={filterRestaurantsByPrice('£')}
-      />
-      <RestaurantsList
-        title="Bit Pricier"
-        restaurants={filterRestaurantsByPrice('££')}
-      />
-      <RestaurantsList
-        title="Big Spender"
-        restaurants={filterRestaurantsByPrice('£££')}
-      />
     </View>
   );
 };

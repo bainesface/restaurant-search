@@ -8,11 +8,7 @@ const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchApi, restaurants, errorMessage] = useRestaurants();
 
-  const filterRestaurantsByPrice = (price) => {
-    return restaurants.filter((restaurant) => {
-      return restaurant.price === price;
-    });
-  };
+  console.log(restaurants);
 
   return (
     <View style={styles.background}>
@@ -26,18 +22,9 @@ const SearchScreen = () => {
       ) : (
         <Text>We have found {restaurants.length} results</Text>
       )}
-      <RestaurantsList
-        title="Cost Effective"
-        restaurants={filterRestaurantsByPrice('£')}
-      />
-      <RestaurantsList
-        title="Bit Pricier"
-        restaurants={filterRestaurantsByPrice('££')}
-      />
-      <RestaurantsList
-        title="Big Spender"
-        restaurants={filterRestaurantsByPrice('£££')}
-      />
+      <RestaurantsList title="Cost Effective" />
+      <RestaurantsList title="Bit Pricier" />
+      <RestaurantsList title="Big Spender" />
     </View>
   );
 };

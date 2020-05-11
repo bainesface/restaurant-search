@@ -1,18 +1,29 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SearchBar from '../components/SearchBar';
-import useRestaurants from '../hooks/useRestaurants';
-import RestaurantsList from '../components/RestaurantsList';
+import yelp from '../api/yelp';
 
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchApi, restaurants, errorMessage] = useRestaurants();
+  const [restaurants, setRestaurants] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const filterRestaurantsByPrice = (price) => {
-    return restaurants.filter((restaurant) => {
-      return restaurant.price === price;
-    });
+  const searchApi = async (term) => {
+    try {
+      const response = await yelp.get('/search', {
+        params: {
+          limit: 50,
+          term,
+          location: 'manchester',
+        },
+      });
+      setRestaurants(response.data.businesses);
+    } catch (err) {
+      setErrorMessage('Something went wrong, try again');
+    }
   };
+
+  searchApi('sushi');
 
   return (
     <View style={styles.background}>
@@ -26,18 +37,6 @@ const SearchScreen = () => {
       ) : (
         <Text>We have found {restaurants.length} results</Text>
       )}
-      <RestaurantsList
-        title="Cost Effective"
-        restaurants={filterRestaurantsByPrice('£')}
-      />
-      <RestaurantsList
-        title="Bit Pricier"
-        restaurants={filterRestaurantsByPrice('££')}
-      />
-      <RestaurantsList
-        title="Big Spender"
-        restaurants={filterRestaurantsByPrice('£££')}
-      />
     </View>
   );
 };

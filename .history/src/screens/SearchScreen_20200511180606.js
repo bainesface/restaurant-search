@@ -26,18 +26,9 @@ const SearchScreen = () => {
       ) : (
         <Text>We have found {restaurants.length} results</Text>
       )}
-      <RestaurantsList
-        title="Cost Effective"
-        restaurants={filterRestaurantsByPrice('£')}
-      />
-      <RestaurantsList
-        title="Bit Pricier"
-        restaurants={filterRestaurantsByPrice('££')}
-      />
-      <RestaurantsList
-        title="Big Spender"
-        restaurants={filterRestaurantsByPrice('£££')}
-      />
+      <RestaurantsList title="Cost Effective" />
+      <RestaurantsList title="Bit Pricier" />
+      <RestaurantsList title="Big Spender" />
     </View>
   );
 };
